@@ -1,7 +1,11 @@
 class SearchFacade
-  def find_food(q)
+  def find_foods(q)
     service = FoodService.new
-    request = service.search_foods(q)
-   require 'pry'; binding.pry
+    # Pass the 'q' parameter to the search_food method
+    request = service.search_food(q)
+    @foods = request[:foods].map do |food|
+      # require 'pry'; binding.pry
+      Food.new(food)
+    end
   end
 end
